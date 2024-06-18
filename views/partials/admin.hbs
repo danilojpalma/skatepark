@@ -4,7 +4,7 @@
       <h2>Administración</h2>
       <hr class="w-50" />
 
-      <table class="table w-50 m-auto">
+      <table class="table">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -20,13 +20,15 @@
             {{#each admin}}
               <tr>
                 <th scope="row">{{this.id}}</th>
-                <td><div><img src="{{this.foto}}" alt="{{this.nombre}}" class="img-fluid" /></div></td>
+                <td class="d-flex justify-content-center"><div><img src="{{this.foto}}" alt="{{this.nombre}}" class="img-fluid" /></div></td>
                 <td>{{this.nombre}}</td>
                 <td>{{this.anos_experiencia}}</td>
                 <td>{{this.especialidad}}</td>
                 <td><input type="checkbox" {{#if this.estado}}checked{{/if}} onclick="updateEstado(this, {{this.id}})" /></td>              </tr>
             {{/each}}
           {{/if}}
+
+          <p><a href="/"> Volver al inicio</a></p>
         </tbody>
       </table>
     </div>

@@ -1,7 +1,6 @@
 
 function updateEstado(checkbox, userId) {
     const estado = checkbox.checked;
-    console.log(userId, estado);
     fetch(`/updateEstado/${userId}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

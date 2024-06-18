@@ -15,15 +15,12 @@ export const login = async (req, res) => {
     return res.render("partials/login");
 }
 
-
-
-
 export const getOneUser = async (req, res) => {
     try {
         const data = await getOneUserQuery();
         return res.render("partials/home", { data });
     } catch (error) {
-        console.log(error);
+        res.status(500).json({ ok: false, msg: "Error al obtener los datos" });
     }
 }
 
@@ -55,7 +52,7 @@ export const registrarUsuario = async (req, res) => {
         return res.status(201).redirect("/");
     }
     catch (error) {
-        console.log(error);
+        res.status(500).json({ ok: false, msg: "Error al registrar el usuario" });
     }
 
 
@@ -98,7 +95,7 @@ export const postLogin = async (req, res) => {
       }
   
     } catch (error) {
-      console.log(error);
+      res.status(500).json({ ok: false, msg: "Error al iniciar sesión" });
     }
   }
 
@@ -115,9 +112,6 @@ export const getDataToken = (req, res) => {
 
 export const updateUser = async (req, res) => {
     const { email, nombre, password, verify_password, anos_experiencia, especialidad } = req.body;
-    // email no esta llegando desde el formulario
-    
-    console.log(email, nombre, password, verify_password, anos_experiencia, especialidad);
     
     try {
         if (password !== verify_password)
@@ -130,7 +124,7 @@ export const updateUser = async (req, res) => {
         return res.status(201).redirect("/")
     }
     catch (error) {
-        console.log(error);
+        res.status(500).json({ ok: false, msg: "Error al actualizar el usuario" });
     }
 
 }
@@ -139,13 +133,11 @@ export const updateUser = async (req, res) => {
 export const deleteUser = async (req, res) => {
 
     const { email } = req.params;
-    console.log(email);
     try {
       const user = await buscarUsuario(email);
       const imageName = user.foto; 
       
       // Eliminar la imagen
-      console.log(imageName);
       const imagePath = path.join(pathFile, imageName.replace('./assets/imgs/', ''));
       fs.unlink(imagePath, (err) => {
         if (err) {
@@ -158,17 +150,17 @@ export const deleteUser = async (req, res) => {
       await deleteUserQuery(email);
       return res.status(201).send("Usuario eliminado correctamente");
     } catch (error) {
-      console.log(error);
+      res.status(500).json({ ok: false, msg: "Error al eliminar el usuario" });
     }
   }
 
-  export const updateState = async (req, res) => { 
+  export const updateStatus = async (req, res) => { 
     const { id, estado } = req.body;
     
     try {
       await updateEstadoQuery(id, estado);
       return res.status(201).send("Estado actualizado correctamente");
     } catch (error) {
-      console.log(error);
+      res.status(500).json({ ok: false, msg: "Error al actualizar el estado" });
     }
   }

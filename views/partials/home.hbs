@@ -23,8 +23,8 @@
             {{#each data}}
               <tr>
                 <th scope="row">{{this.id}}</th>
-                <td>
-                    <div>
+                <td class="d-flex justify-content-center">
+                    <div >
                       <img src="{{this.foto}}" alt="{{this.nombre}}" class="img-fluid" />
                     </div>
                 </td>
@@ -32,7 +32,8 @@
               <td>{{this.nombre}}</td>
               <td>{{this.anos_experiencia}}</td>
               <td>{{this.especialidad}}</td>
-              {{#if status}}
+              
+              {{#if this.estado}}
                   <td class="text-success font-weight-bold">Aceptado</td>
                   {{else}}
                   <td class="text-warning font-weight-bold">En revisión</td>
