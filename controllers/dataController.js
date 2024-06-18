@@ -122,7 +122,7 @@ export const deleteUser = async (req, res) => {
     console.log(email);
     try {
         await deleteUserQuery(email);
-        return res.status(201).redirect("/")
+        return res.status(201).send("Usuario eliminado correctamente");
     } catch (error) {
         console.log(error);
     }
