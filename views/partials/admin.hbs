@@ -24,8 +24,7 @@
                 <td>{{this.nombre}}</td>
                 <td>{{this.anos_experiencia}}</td>
                 <td>{{this.especialidad}}</td>
-                <td><input type="checkbox" {{#if this.estado}}checked{{/if}} onclick="updateEstado({{this.id}})" /></td>
-              </tr>
+                <td><input type="checkbox" {{#if this.estado}}checked{{/if}} onclick="updateEstado(this, {{this.id}})" /></td>              </tr>
             {{/each}}
           {{/if}}
         </tbody>
@@ -33,3 +32,4 @@
     </div>
 
 <script src="./assets/js/cambiarEstado.js"></script>
+ 

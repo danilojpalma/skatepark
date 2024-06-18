@@ -1,6 +1,6 @@
 import path from "path";
 import bcryptjs from "bcryptjs";
-import { getAllUsersQuery, getOneUserQuery, buscarUsuario, postUser, updateUserQuery, deleteUserQuery } from "../models/queries.js";    
+import { getAllUsersQuery, getOneUserQuery, buscarUsuario, postUser, updateUserQuery, deleteUserQuery, updateEstadoQuery } from "../models/queries.js";    
 import { tokenGeneration } from "../config/tokenGeneration.js";   
 import fs from "fs"; 
 
@@ -162,8 +162,9 @@ export const deleteUser = async (req, res) => {
     }
   }
 
-  export const updateEstado = async (req, res) => { 
+  export const updateState = async (req, res) => { 
     const { id, estado } = req.body;
+    
     try {
       await updateEstadoQuery(id, estado);
       return res.status(201).send("Estado actualizado correctamente");

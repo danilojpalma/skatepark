@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { tokenValidation } from "../config/tokenValidation.js";
-import { getOneUser, registrarUsuario, registro, login, postLogin, getDataToken, updateUser, deleteUser, getAdminData } from "../controllers/dataController.js";
+import { getOneUser, registrarUsuario, registro, login, postLogin, getDataToken, updateUser, deleteUser, getAdminData, updateState } from "../controllers/dataController.js";
 
 const router = Router();
 
@@ -28,5 +28,5 @@ router.delete("/deleteUser/:email", deleteUser);
 
 router.get("/admin", tokenValidation, getAdminData);
 
-
+router.post("/updateEstado/:id", updateState)
 export default router;
