@@ -1,7 +1,12 @@
 import { query } from 'express';
 import pool from '../config/db.js';
 
-const getQueryAll = async () => {
+const getAllUsersQuery = async () => {  
+    const { rows } = await pool.query("select * from skaters");
+    return rows;
+}
+
+const getOneUserQuery = async () => {
     const { rows } = await pool.query("select * from skaters");
     return rows;
 }
@@ -48,11 +53,23 @@ const deleteUserQuery = async (email) => {
     return rows[0];
 }
 
+const updateEstadoQuery = async (id, estado) => {
+    const query = {
+        text: "update skaters set estado = $2 where id = $1",
+        values: [id, estado]
+    }
+
+    const { rows } = await pool.query(query);
+    return rows[0];
+}
+
 
 export {
-    getQueryAll,
+    getAllUsersQuery,
+    getOneUserQuery,
     buscarUsuario,
     postUser,
     updateUserQuery,
-    deleteUserQuery
+    deleteUserQuery,
+    updateEstadoQuery
 }

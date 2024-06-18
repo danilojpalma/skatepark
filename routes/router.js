@@ -1,11 +1,11 @@
 import { Router } from "express";
 import { tokenValidation } from "../config/tokenValidation.js";
-import { getAllUsers, registrarUsuario, registro, login, postLogin, getDataToken, updateUser, deleteUser } from "../controllers/dataController.js";
+import { getOneUser, registrarUsuario, registro, login, postLogin, getDataToken, updateUser, deleteUser, getAdminData } from "../controllers/dataController.js";
 
 const router = Router();
 
 // ruta para obtener todos los usuarios en la vista home
-router.get("/", getAllUsers);
+router.get("/", getOneUser);
 
 // ruta para obtener la vista de registro
 router.get("/registro", registro);
@@ -26,6 +26,7 @@ router.get("/updateUser", tokenValidation, getDataToken);
 router.post("/updateUser", updateUser);
 router.delete("/deleteUser/:email", deleteUser);
 
+router.get("/admin", tokenValidation, getAdminData);
 
 
 export default router;
